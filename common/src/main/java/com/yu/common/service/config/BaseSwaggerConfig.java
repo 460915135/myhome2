@@ -1,6 +1,6 @@
-package com.yu.common.config;
+package com.yu.common.service.config;
 
-import com.yu.common.domain.SwaggerProperties;
+import com.yu.common.service.domain.SwaggerProperties;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;

@@ -1,7 +1,7 @@
-package com.yu.common.exception;
+package com.yu.common.service.exception;
 
 
-import com.yu.common.api.CommonResult;
+import com.yu.common.service.api.CommonResult;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

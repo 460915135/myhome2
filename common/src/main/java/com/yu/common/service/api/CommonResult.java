@@ -1,8 +1,8 @@
-package com.yu.common.api;
+package com.yu.common.service.api;
 
 /**
  * 通用返回对象
- * Created by macro on 2019/4/19.
+ * Created on 2019/4/19.
  */
 public class CommonResult<T> {
     private long code;
@@ -47,15 +47,6 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
-     * @param errorCode 错误码
-     * @param message 错误信息
-     */
-    public static <T> CommonResult<T> failed(IErrorCode errorCode,String message) {
-        return new CommonResult<T>(errorCode.getCode(), message, null);
-    }
-
-    /**
-     * 失败返回结果
      * @param message 提示信息
      */
     public static <T> CommonResult<T> failed(String message) {
@@ -96,6 +87,13 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> forbidden(T data) {
         return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+    }
+
+    /**
+     * 请求异常返回结果#add by yangguo
+     */
+    public static <T> CommonResult<T> badResponse(IErrorCode errorCode) {
+        return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
     public long getCode() {

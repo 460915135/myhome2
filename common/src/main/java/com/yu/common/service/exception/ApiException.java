@@ -1,7 +1,7 @@
-package com.yu.common.exception;
+package com.yu.common.service.exception;
 
 
-import com.yu.common.api.IErrorCode;
+import com.yu.common.service.api.IErrorCode;
 
 /**
  * 自定义API异常

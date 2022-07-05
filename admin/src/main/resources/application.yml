@@ -1,28 +1,41 @@
-server:
-  port: 8080
 
+# 数据源
 spring:
-  application:
-    name: myhome
-  profiles:
-    active: dev
+  datasource:
+    username: root
+    password: Yu753951
+    url: jdbc:mysql://sh-cynosdbmysql-grp-cqtqxfr0.sql.tencentcdb.com:21786/home?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
-mybatis-plus:
-  mapper-locations: classpath:/mapper/**/*.xml
-  global-config:
-    db-config:
-      id-type: auto
-  configuration:
-    auto-mapping-behavior: partial
-    map-underscore-to-camel-case: true
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-#redis:
-#  database: mall
-#  key:
-#    admin: 'ums:admin'
-#    resourceList: 'ums:resourceList'
-#  expire:
-#    common: 86400 # 24小时
+
+#    druid:
+#      #开启druid 监控台servlet
+#      stat-view-servlet:
+#        enabled: true
+#        login-username: admin
+#        loginPassword: 1
+#      #开启druid 监控filter
+#      web-stat-filter:
+#        enabled: true
 
 secure:
   ignored:
@@ -40,5 +53,20 @@ secure:
       - /druid/**
       - /admin/login
       - /admin/register
-      - /admin/logout
-      - /error
+      - /upload/product/**
+server:
+  port: 8081
+
+
+logging:
+  level:
+    root: info
+    com:
+      tulingxueyuan: trace
+  pattern:
+    console: '%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){red} %clr(${LOG_LEVEL_PATTERN:-%10p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
+    dateformat: -yyyy-MM-dd
+  file:
+    name: Z:/logs/home.log
+    #path: D:/
+    max-size: 5KB

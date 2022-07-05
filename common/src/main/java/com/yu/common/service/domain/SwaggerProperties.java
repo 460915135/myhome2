@@ -1,4 +1,4 @@
-package com.yu.common.domain;
+package com.yu.common.service.domain;
 
 import lombok.Builder;
 import lombok.Data;
